@@ -3,9 +3,19 @@ package com.raiseup.PetClinic.model;
 import java.time.LocalDate;
 
 public class Pet extends BaseEntity{
+
+    private String name;
     private PetType petType;
-    private Pet pet;
+    private Owner owner;
     private LocalDate birthDate;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public PetType getPetType() {
         return petType;
@@ -15,12 +25,12 @@ public class Pet extends BaseEntity{
         this.petType = petType;
     }
 
-    public Pet getPet() {
-        return pet;
+    public Owner getOwner() {
+        return owner;
     }
 
-    public void setPet(Pet pet) {
-        this.pet = pet;
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
     public LocalDate getBirthDate() {

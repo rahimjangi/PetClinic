@@ -1,11 +1,20 @@
 package com.raiseup.PetClinic.service.map;
 
+import com.raiseup.PetClinic.model.Speciality;
 import com.raiseup.PetClinic.model.Vet;
-import com.raiseup.PetClinic.service.CrudService;
+import com.raiseup.PetClinic.service.SpecialtiesService;
+import com.raiseup.PetClinic.service.VetService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
+@Service
+public class VetServiceMap extends AbstractMapService<Vet,Long>implements VetService {
+    private final SpecialtiesService specialtiesService;
 
-public class VetServiceMap extends AbstractMapService<Vet,Long>implements CrudService<Vet,Long> {
+    public VetServiceMap(SpecialtiesService specialtiesService) {
+        this.specialtiesService = specialtiesService;
+    }
+
     @Override
     public Set<Vet> findAll() {
         return super.findAll();
@@ -23,7 +32,15 @@ public class VetServiceMap extends AbstractMapService<Vet,Long>implements CrudSe
 
     @Override
     public Vet save(Vet vet) {
-        return super.save(vet.getId(),vet);
+        if(vet.getSpecialities().size()>0){
+            vet.getSpecialities().forEach(speciality -> {
+                if(speciality.getId()==null){
+                    Speciality savedSpecilty= specialtiesService.save(speciality);
+                    speciality.setId(savedSpecilty.getId());
+                }
+            });
+        }
+        return super.save(vet);
     }
 
     @Override
