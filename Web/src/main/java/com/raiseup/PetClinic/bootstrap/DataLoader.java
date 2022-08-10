@@ -3,6 +3,7 @@ package com.raiseup.PetClinic.bootstrap;
 import com.raiseup.PetClinic.model.*;
 import com.raiseup.PetClinic.service.*;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -15,7 +16,8 @@ public class DataLoader implements CommandLineRunner {
     private final PetService petService;
     private final SpecialtiesService specialtiesService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, PetService petService, SpecialtiesService specialtiesService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService,
+                      PetService petService, SpecialtiesService specialtiesService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;

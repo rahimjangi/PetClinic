@@ -1,12 +1,14 @@
-package com.raiseup.PetClinic.service.map;
+package com.raiseup.PetClinic.service.mapService;
 
 import com.raiseup.PetClinic.model.Speciality;
 import com.raiseup.PetClinic.service.SpecialtiesService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Profile({"default","map"})
 public class SpecialtiesMapService extends AbstractMapService<Speciality,Long> implements SpecialtiesService {
     @Override
     public Set<Speciality> findAll() {

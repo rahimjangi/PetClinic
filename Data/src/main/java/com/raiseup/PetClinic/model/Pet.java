@@ -1,14 +1,27 @@
 package com.raiseup.PetClinic.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
+@Entity
 public class Pet extends BaseEntity{
 
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "type_id")
     private PetType petType;
+
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
     private Owner owner;
+
     private LocalDate birthDate;
 
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "pet")
+    private List<Visit> visits= new ArrayList<>();
     public String getName() {
         return name;
     }
@@ -39,5 +52,13 @@ public class Pet extends BaseEntity{
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public List<Visit> getVisits() {
+        return visits;
+    }
+
+    public void setVisits(List<Visit> visits) {
+        this.visits = visits;
     }
 }

@@ -1,4 +1,4 @@
-package com.raiseup.PetClinic.service.map;
+package com.raiseup.PetClinic.service.mapService;
 
 import com.raiseup.PetClinic.model.BaseEntity;
 

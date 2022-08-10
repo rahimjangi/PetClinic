@@ -1,6 +1,10 @@
 package com.raiseup.PetClinic.model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class PetType extends BaseEntity{
+
     private String name;
 
     public String getName() {

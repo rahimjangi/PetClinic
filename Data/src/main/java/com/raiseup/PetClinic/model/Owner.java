@@ -1,13 +1,20 @@
 package com.raiseup.PetClinic.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
+@Entity
 public class Owner extends Person{
+
     private String address;
     private String city;
     private String telephone;
-    private Set<Pet> pets= new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "owner")
+    private List<Pet> pets= new ArrayList<>();
 
     public String getAddress() {
         return address;
@@ -33,11 +40,11 @@ public class Owner extends Person{
         this.telephone = telephone;
     }
 
-    public Set<Pet> getPets() {
+    public List<Pet> getPets() {
         return pets;
     }
 
-    public void setPets(Set<Pet> pets) {
+    public void setPets(List<Pet> pets) {
         this.pets = pets;
     }
 }
